@@ -1,5 +1,5 @@
 // JavaScript for smooth scrolling
-document.querySelectorAll('.navbar a').forEach(anchor => {
+document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
@@ -13,7 +13,7 @@ document.querySelectorAll('.navbar a').forEach(anchor => {
     });
 });
 
-const navbar = document.querySelectorAll('.navbar a');
+const navbar = document.querySelectorAll('nav a');
 navbar.forEach(article=> {
     article.addEventListener('mouseover', function() {
         this.style.backgroundColor = '#355E3B';

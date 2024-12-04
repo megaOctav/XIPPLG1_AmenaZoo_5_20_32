@@ -50,15 +50,20 @@
 <section id="koleksi" class="bg-green-700 py-20 text-center px-5 md:px-20">
   <h2 class="text-4xl font-bold mb-10 text-white">Koleksi</h2>
   
-  @foreach($animals as $animal)
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-        <img src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}" class="w-full h-40 object-cover">
+  <!-- Grid Layout -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    @foreach($animals as $animal)
+      <div class="bg-green-800 rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+        <!-- Gambar -->
+        <img src="{{ asset('storage/' . $animal->gambar) }}" alt="{{ $animal->names }}" class="w-full h-40 object-cover mb-4">
+        <!-- Nama dan Deskripsi -->
         <div class="p-5">
-            <h3 class="text-lg font-semibold text-white">{{ $animal->name }}</h3>
-            <p class="text-sm text-gray-300">{{ $animal->description }}</p>
+          <h3 class="text-lg font-semibold text-white">{{ $animal->name }}</h3>
+          <p class="text-sm text-gray-300">{{ $animal->deskripsi }}</p>
         </div>
-    </div>
-  @endforeach
+      </div>
+    @endforeach
+  </div>
 </section>
 
 
@@ -110,11 +115,11 @@
       @endif
 
 
-        <input type="text" placeholder="Nama" required
+        <input type="text" id="name" name="name" placeholder="Nama" required
           class="w-full mb-4 p-3 rounded bg-green-900 placeholder-gray-300">
-        <input type="email" placeholder="Email" required
+        <input type="email" id="email" name="email" placeholder="Email" required
           class="w-full mb-4 p-3 rounded bg-green-900 placeholder-gray-300">
-        <textarea placeholder="Tulis Pesan..." required
+        <textarea placeholder="Tulis Pesan..." id="message" name="message"  required
           class="w-full mb-4 p-3 rounded bg-green-900 placeholder-gray-300"></textarea>
         <button type="submit"
           class="bg-green-600 hover:bg-green-700 px-5 py-3 rounded text-white font-bold w-full">Kirim</button>

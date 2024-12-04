@@ -46,60 +46,21 @@
 
   </section>
 
-  <!-- Koleksi Section -->
+<!-- Koleksi Section -->
 <section id="koleksi" class="bg-green-700 py-20 text-center px-5 md:px-20">
   <h2 class="text-4xl font-bold mb-10 text-white">Koleksi</h2>
-  <div class="overflow-x-auto flex gap-6 px-4 md:px-10 scrollbar-hide">
-    <!-- Card 1 -->
+  
+  @foreach($animals as $animal)
     <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/leopard.jpg" alt="Leopard" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Leopard</h3>
-        <p class="text-sm text-gray-300">Description of Leopard</p>
-      </div>
+        <img src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}" class="w-full h-40 object-cover">
+        <div class="p-5">
+            <h3 class="text-lg font-semibold text-white">{{ $animal->name }}</h3>
+            <p class="text-sm text-gray-300">{{ $animal->description }}</p>
+        </div>
     </div>
-    <!-- Card 2 -->
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/singa.jpg" alt="Lion" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Lion</h3>
-        <p class="text-sm text-gray-300">Description of Lion</p>
-      </div>
-    </div>
-    <!-- Card 3 -->
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/tiger.jpg" alt="Tiger" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Tiger</h3>
-        <p class="text-sm text-gray-300">Description of Tiger</p>
-      </div>
-    </div>
-    <!-- Card 4 -->
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/monkey.jpg" alt="Monkey" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Monkey</h3>
-        <p class="text-sm text-gray-300">Description of Monkey</p>
-      </div>
-    </div>
-    <!-- Card 5 -->
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/snake.jpg" alt="Snake" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Snake</h3>
-        <p class="text-sm text-gray-300">Description of Snake</p>
-      </div>
-    </div>
-    <!-- Card 6 -->
-    <div class="bg-green-800 rounded-lg overflow-hidden w-64 shrink-0 shadow-lg">
-      <img src="asset/foto/lemur.jpg" alt="Lemur" class="w-full h-40 object-cover">
-      <div class="p-5">
-        <h3 class="text-lg font-semibold text-white">Lemur</h3>
-        <p class="text-sm text-gray-300">Description of Lemur</p>
-      </div>
-    </div>
-  </div>
+  @endforeach
 </section>
+
 
   <!-- Services Section -->
   <section id="service" class="bg-green-800 py-20 text-center">
@@ -137,8 +98,18 @@
   <section id="contact" class="bg-green-700 py-20">
     <div class="container mx-auto px-10 flex flex-col md:flex-row justify-between items-center">
       <!-- Form -->
-      <form class="bg-green-800 p-10 rounded-lg w-full md:w-1/2 shadow-lg">
+      <form action="{{ route('contact.store') }}" method="POST" class="bg-green-800 p-10 rounded-lg w-full md:w-1/2 shadow-lg">
+      @csrf
         <h3 class="text-3xl font-bold mb-5">Hubungi Kami</h3>
+
+         <!-- Pesan Sukses -->
+      @if(session('success'))
+        <div class="text-green-500 mb-4">
+          {{ session('success') }}
+        </div>
+      @endif
+
+
         <input type="text" placeholder="Nama" required
           class="w-full mb-4 p-3 rounded bg-green-900 placeholder-gray-300">
         <input type="email" placeholder="Email" required
@@ -162,6 +133,12 @@
     <p>Copyright &copy;2024 Designed by <span class="font-bold">Amena</span></p>
   </footer>
   <script src="/asset/js/index.js"></script>
+  @if(session('success'))
+    <div class="text-green-500 mb-4">
+        {{ session('success') }}
+    </div>
+  @endif
+
 
 </body>
 

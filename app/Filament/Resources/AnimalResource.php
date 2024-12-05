@@ -39,7 +39,7 @@ class AnimalResource extends Resource
             ->schema([
                 //
                 Forms\Components\TextInput::make('names')->required(),
-                Textarea::make('deskirpsi')->required(),
+                Textarea::make('deskripsi')->required(),
                 FileUpload::make('gambar')->image()->directory('uploads/animals'),
             ]);
     }
